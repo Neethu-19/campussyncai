@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Summarizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vibrant.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-calendar-alt"></i> Schedule Viewer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/study-groups"><i class="fas fa-users"></i> Study Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reminders"><i class="fas fa-bell"></i> Reminders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/attendance"><i class="fas fa-check-double"></i> Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/summarizer"><i class="fas fa-file-alt"></i> Summarizer</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="text-center mb-0">Document Summarizer</h2>
+                        <p class="text-center mb-0 mt-2 small">Upload PDF or PPT files to get a summary</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-area text-center p-5" id="dropZone">
+                            <i class="fas fa-file-upload fa-3x mb-3"></i>
+                            <h4>Drag and drop your files here</h4>
+                            <p class="text-muted">or</p>
+                            <form id="uploadForm" enctype="multipart/form-data">
+                                <input type="file" id="fileInput" accept=".pdf,.pptx" class="d-none">
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                                    Choose Files
+                                </button>
+                                <p class="mt-2 text-muted small">Supported formats: PDF, PPTX</p>
+                            </form>
+                        </div>
+
+                        <div id="summaryDisplay" class="mt-4 d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3>Document Summary</h3>
+                                <div class="file-info">
+                                    <span id="fileName"></span>
+                                </div>
+                            </div>
+                            <div class="summary-content p-4 bg-light rounded">
+                                <div id="summaryText"></div>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-primary" onclick="downloadSummary()">
+                                    <i class="fas fa-download me-2"></i>Download Summary
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Toast Container for Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="fas fa-bell me-2"></i>
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/summarizer.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html> 

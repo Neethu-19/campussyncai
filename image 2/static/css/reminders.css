@@ -1,0 +1,210 @@
+/* Reminders styles */
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+#clock {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+/* Reminder cards */
+.reminder-card {
+    border-left: 4px solid #dee2e6;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.reminder-card:hover {
+    transform: translateX(5px);
+}
+
+/* Priority colors */
+.reminder-card.priority-urgent {
+    border-left-color: #dc3545;
+}
+
+.reminder-card.priority-high {
+    border-left-color: #fd7e14;
+}
+
+.reminder-card.priority-medium {
+    border-left-color: #ffc107;
+}
+
+.reminder-card.priority-low {
+    border-left-color: #28a745;
+}
+
+.reminder-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.reminder-info {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.reminder-actions {
+    margin-top: 0.5rem;
+}
+
+.reminder-actions button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Priority badges */
+.badge.priority-urgent {
+    background-color: #dc3545;
+}
+
+.badge.priority-high {
+    background-color: #fd7e14;
+}
+
+.badge.priority-medium {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.badge.priority-low {
+    background-color: #28a745;
+}
+
+/* Form styles */
+.form-label {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Filter buttons */
+.btn-group .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-group .btn.active {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #dee2e6;
+}
+
+/* Toast styles */
+.toast {
+    background-color: white;
+    border: none;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+.toast-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: none;
+}
+
+.toast-body {
+    color: #2c3e50;
+}
+
+/* Completed reminder styles */
+.reminder-card.completed {
+    opacity: 0.7;
+    border-left-color: #6c757d;
+}
+
+.reminder-card.completed .reminder-title {
+    text-decoration: line-through;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .reminder-card:hover {
+        transform: none;
+    }
+    
+    .btn-group {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .btn-group .btn {
+        flex: 1;
+    }
+}
+
+/* Animation for new reminders */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.reminder-card.new {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Repeat indicator */
+.repeat-indicator {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-left: 0.5rem;
+}
+
+.repeat-indicator i {
+    margin-right: 0.25rem;
+} 

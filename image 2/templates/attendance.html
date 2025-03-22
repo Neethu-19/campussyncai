@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/attendance.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-calendar-alt"></i> Schedule Viewer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/study-groups"><i class="fas fa-users"></i> Study Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reminders"><i class="fas fa-bell"></i> Reminders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/attendance"><i class="fas fa-check-double"></i> Attendance</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Record Attendance</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="attendanceForm">
+                            <div class="mb-3">
+                                <label class="form-label">Subject</label>
+                                <select class="form-select" id="subjectSelect" required>
+                                    <!-- Will be populated from schedule -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control" id="attendanceDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="status" id="present" value="present" checked>
+                                    <label class="btn btn-outline-success" for="present">Present</label>
+                                    <input type="radio" class="btn-check" name="status" id="absent" value="absent">
+                                    <label class="btn btn-outline-danger" for="absent">Absent</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Record Attendance</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-info-circle"></i> Attendance Thresholds</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="threshold-item">
+                            <span class="badge bg-success">Excellent</span>
+                            <span class="threshold-value">≥ 90%</span>
+                        </div>
+                        <div class="threshold-item">
+                            <span class="badge bg-primary">Good</span>
+                            <span class="threshold-value">≥ 75%</span>
+                        </div>
+                        <div class="threshold-item">
+                            <span class="badge bg-warning">Average</span>
+                            <span class="threshold-value">≥ 65%</span>
+                        </div>
+                        <div class="threshold-item">
+                            <span class="badge bg-danger">Poor</span>
+                            <span class="threshold-value">< 65%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Attendance Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="attendanceStats"></div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-history"></i> Recent Activity</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="recentActivity" class="timeline"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/attendance.js') }}"></script>
+</body>
+</html> 
